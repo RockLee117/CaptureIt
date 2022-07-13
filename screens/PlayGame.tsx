@@ -1,20 +1,14 @@
 import React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 
-function HomeScreen({ navigation }) {
+function PlayGameScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <View style={{backgroundColor: 'orange'}}>
-        <Button
-          title="Go to Directions"
-          onPress={() => navigation.navigate("Directions")}
-        />
-      </View>
+      <Text>Play Game</Text>
     </View>
   );
 }
-export default HomeScreen;
+export default PlayGameScreen;
 
 const styles = StyleSheet.create({
   container: {
