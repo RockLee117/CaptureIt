@@ -6,6 +6,7 @@ function PlayGameScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      
       {/*#### modal */}
       <View style={styles.modal}>
         <Modal
@@ -18,12 +19,16 @@ function PlayGameScreen({ navigation }) {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+
+              {/* the resume pressable closes the modal */}
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text style={styles.textStyle}>Resume</Text>
               </Pressable>
+
+              {/* the quit pressable returns back to the start screen */}
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => navigation.navigate('Home')}
@@ -35,6 +40,7 @@ function PlayGameScreen({ navigation }) {
         </Modal>
       </View>
       {/* ##end of modal */}
+
 
       <View style={styles.menuButton}>
         <Button title="Menu" onPress={() => setModalVisible(true)} />
