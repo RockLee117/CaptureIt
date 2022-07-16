@@ -7,7 +7,10 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image}>
 
-        <Text>Home Screen</Text>
+        <View style={{marginBottom: 150}}>
+          <Text style={styles.title}>Capture It</Text>
+        </View>
+
         <View style={styles.startButton}>
           <Button
             title="Start"
@@ -33,5 +36,12 @@ const styles = StyleSheet.create({
   },
   startButton: {
     backgroundColor: "orange",
+    width: 70,
+    height: 40,
+    marginBottom: 170
+  },
+  title: {
+    fontSize: 30,
+    color: "black" 
   }
 });
