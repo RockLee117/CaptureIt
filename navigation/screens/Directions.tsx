@@ -5,8 +5,12 @@ function DirectionsScreen({navigation}){
   return(
     <View style={styles.container}>
       <Text>Directions</Text>
-      <Button title="Play" onPress={() => navigation.navigate('Play Game')} />
-      <Button title="Back" onPress={() => navigation.goBack()} />
+      <View style={styles.backButton}>
+        <Button title="Back" onPress={() => navigation.goBack()} />
+      </View>
+      <View style={styles.playButton}>
+        <Button title="Play" onPress={() => navigation.navigate('Play Game')} />
+      </View>
     </View>
   );
 }
@@ -18,5 +22,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
+    },
+    backButton: {
+      marginRight: 200,
+      marginTop: 30,
+      width: 100,
+      height: 50,
+      backgroundColor: 'red'
+    },
+    playButton: {
+      marginLeft: 200,
+      width: 100,
+      height: 50,
+      backgroundColor: 'lime'
     }
 });
