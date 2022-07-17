@@ -1,50 +1,12 @@
 import React, { useState } from "react";
 import { Pressable, Modal, Text, View, Button, StyleSheet } from "react-native";
+import ModalMenu from "../../components/ModalMenu";
+
 
 function PlayGameScreen({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <View style={styles.container}>
-      
-      {/*#### modal */}
-      <View style={styles.modal}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-
-              {/* the resume pressable closes the modal */}
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Resume</Text>
-              </Pressable>
-
-              {/* the quit pressable returns back to the start screen */}
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => navigation.navigate('Home')}
-              >
-                <Text>Quit</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
-      </View>
-      {/* ##end of modal */}
-
-
-      <View style={styles.menuButton}>
-        <Button title="Menu" onPress={() => setModalVisible(true)} />
-      </View>
+      <ModalMenu navigation={navigation} />
 
       <Text>Score:</Text>
 
