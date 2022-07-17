@@ -1,3 +1,5 @@
+//https://docs.expo.dev/versions/latest/sdk/camera/
+
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
