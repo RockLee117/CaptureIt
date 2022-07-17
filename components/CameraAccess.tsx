@@ -1,8 +1,9 @@
 //https://docs.expo.dev/versions/latest/sdk/camera/
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
+import flipArrowPic from '../assets/flip.png';
 
 export default function CameraAccess() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -25,12 +26,19 @@ export default function CameraAccess() {
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
+          {/* this touchable opacity flips the camera */}
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               setType(type === CameraType.back ? CameraType.front : CameraType.back);
             }}>
-            <Text style={styles.text}> Flip </Text>
+            <Image source={flipArrowPic} style={styles.arrow}/>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={styles.picButton}
+          >
+
           </TouchableOpacity>
         </View>
       </Camera>
@@ -54,6 +62,16 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'flex-end',
     alignItems: 'center',
+  },
+  picButton: {
+    width: 50,
+    height: 50,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  arrow: {
+    width: 50,
+    height: 50,
   },
   text: {
     fontSize: 18,
