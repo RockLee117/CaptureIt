@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'white',
     alignItems: 'center',
+    borderRadius: 30,
+    marginTop: 600,
+    marginLeft: 100
   },
   arrow: {
     width: 50,
     height: 50,
-  },
-  text: {
-    fontSize: 18,
-    color: 'white',
+    marginBottom: 60,
   },
 });
