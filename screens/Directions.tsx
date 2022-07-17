@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImageBackground, Text, View, Button, StyleSheet} from 'react-native';
-import image from "../../assets/directionsScreen.png";
+import image from "../assets/directionsScreen.png";
 
 function DirectionsScreen({navigation}){
   return(

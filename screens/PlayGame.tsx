@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
-import ModalMenu from "../../components/ModalMenu";
-import CameraAccess from "../../components/CameraAccess";
+import ModalMenu from "../components/ModalMenu";
 
 function PlayGameScreen({ navigation }) {
   return (
@@ -10,10 +9,8 @@ function PlayGameScreen({ navigation }) {
 
       <Text>Score:</Text>
 
-      <CameraAccess />
-
       <View style={styles.picButton}>
-        <Button title="Take Picture" />
+        <Button title="Take Picture" onPress={() => navigation.navigate('Camera Pic')}/>
       </View>
     </View>
   );

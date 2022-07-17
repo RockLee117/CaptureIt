@@ -1,6 +1,6 @@
 import React from "react";
 import { ImageBackground, Text, View, Button, StyleSheet } from "react-native";
-import image from "../../assets/startScreen.png";
+import image from "../assets/startScreen.png";
 
 function HomeScreen({ navigation }) {
   return (
