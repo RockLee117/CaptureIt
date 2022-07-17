@@ -35,6 +35,7 @@ export default function CameraAccess() {
             <Image source={flipArrowPic} style={styles.arrow}/>
           </TouchableOpacity>
           
+          {/* this touchable opacity takes the picture */}
           <TouchableOpacity
             style={styles.picButton}
           >
