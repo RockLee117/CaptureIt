@@ -8,6 +8,7 @@ import flipArrowPic from '../assets/flip.png';
 export default function CameraAccess() {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
+  let [cameraReady, setCameraReady] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -20,8 +21,13 @@ export default function CameraAccess() {
     return <View />;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>No access to camera. Go to your settings and allow Expo Go permission to access camera.</Text>;
   }
+  //if cameraReady true, camera takes picture
+  if(cameraReady === true){
+
+  }
+
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
@@ -38,6 +44,9 @@ export default function CameraAccess() {
           {/* this touchable opacity takes the picture */}
           <TouchableOpacity
             style={styles.picButton}
+            onPress={() => {
+              setCameraReady(cameraReady = true);
+            }}
           >
 
           </TouchableOpacity>
