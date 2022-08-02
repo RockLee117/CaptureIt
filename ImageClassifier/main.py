@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 data = keras.datasets.cifar100
 
-(training_images, training_labels), (testing_images, testing_labels) = data.load_data(label_mode='fine')
+(training_images, training_labels), (testing_images, testing_labels) = data.load_data()
 
 # Note that training_labels is a 2D array that is either 0-99
 # [[19]
