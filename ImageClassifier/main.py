@@ -1,8 +1,8 @@
-import tensorflow as tf
-from tensorflow import keras
-from keras import layers, models
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+from keras import layers, models
+from tensorflow import keras
 
 data = keras.datasets.cifar100
 
@@ -62,19 +62,22 @@ classes = [
 
 # plt.show()
 
-# Model- Convulutional Neural Network
+# Model- Convulutional Neural Network 
 model = models.Sequential([
-    layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(32, 32, 3)),
-    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(filters=32, kernel_size=(2, 2), padding='same', strides=(2,2), input_shape=(32, 32, 3)),
+    layers.MaxPooling2D(pool_size=(2, 2), strides=(1,1), padding='same'),
     
-    layers.Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
-    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(filters=64, kernel_size=(2, 2), padding='same', strides=(2,2)),
+    layers.MaxPooling2D(pool_size=(2, 2), strides=(1,1), padding='same'),
     
     layers.Flatten(),
-    layers.Dense(64, activation='relu'),
+    layers.Dense(256, activation='relu'),
+    layers.Dense(128, activation='relu'),
     layers.Dense(100, activation='softmax') #is 100 b/c there are 100 labels/classes for the images
 ])
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-model.fit(training_images, training_labels, epochs=5)
+model.fit(training_images, training_labels, epochs=25)
+
+
