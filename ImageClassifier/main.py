@@ -80,4 +80,5 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 model.fit(training_images, training_labels, epochs=25)
 
-
+test_loss, test_acc = model.evaluate(testing_images, testing_labels)
+print("test accuracy: ", test_acc)
