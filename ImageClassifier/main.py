@@ -53,14 +53,7 @@ classes = [
     'wolf','woman','worm'
 ]
 
-# for i in range(16):
-#     plt.subplot(4, 4, i + 1)
-#     plt.xticks([])
-#     plt.yticks([])
-#     plt.imshow(training_images[i], cmap=plt.cm.binary)
-#     plt.xlabel(classes[training_labels[i][0]])
 
-# plt.show()
 
 # Model- Convulutional Neural Network 
 model = models.Sequential([
@@ -78,7 +71,18 @@ model = models.Sequential([
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-model.fit(training_images, training_labels, epochs=25)
+model.fit(training_images, training_labels, epochs=5)
 
 test_loss, test_acc = model.evaluate(testing_images, testing_labels)
 print("test accuracy: ", test_acc)
+
+prediction = model.predict(testing_images)
+
+for i in range(5):
+    plt.grid(False)
+    plt.xticks([])
+    plt.yticks([])
+    plt.imshow(testing_images[i], cmap=plt.cm.binary)
+    plt.xlabel("Actual: " + classes[testing_labels[i][0]])
+    plt.title("Prediction: " + classes[np.argmax(prediction[i])])
+    plt.show()
