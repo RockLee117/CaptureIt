@@ -64,8 +64,8 @@ model = models.Sequential([
     layers.MaxPooling2D(pool_size=(2, 2), strides=(1,1), padding='same'),
     
     layers.Flatten(),
+    layers.Dense(1400, activation='relu'),
     layers.Dense(900, activation='relu'),
-    layers.Dense(600, activation='relu'),
     layers.Dense(100, activation='softmax') #is 100 b/c there are 100 labels/classes for the images
 ])
 model.compile(optimizer='adam',
