@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
 import flipArrowPic from '../assets/flip.png';
+import imageClassifier from '../ImageClassifier/main.py';
 
 export default function CameraAccess() {
   const [hasPermission, setHasPermission] = useState(null);
