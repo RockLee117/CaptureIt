@@ -1,16 +1,19 @@
 //https://docs.expo.dev/versions/latest/sdk/camera/
 
-import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { Image, StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
 import flipArrowPic from '../assets/flip.png';
-import imageClassifier from '../ImageClassifier/main.py';
+import imageClassifier from '../ImageClassifier/main';
 
 export default function CameraAccess() {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
-  let [cameraReady, setCameraReady] = useState(false);
+  const [photo, setPhoto] = useState();
+  const [imagePrediction, setPrediction] = useState();
 
+  let cameraRef = useRef();
+  
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -24,9 +27,34 @@ export default function CameraAccess() {
   if (hasPermission === false) {
     return <Text>No access to camera. Go to your settings and allow Expo Go permission to access camera.</Text>;
   }
-  //if cameraReady true, camera takes picture
-  if(cameraReady === true){
 
+  //function takes picture
+  let takePic = async () => {
+    let options = {
+      quality: 1,
+      base64: true,
+      exif: false
+    };
+
+    let newPhoto = await cameraRef.current.takePictureAsync(options);
+    setPhoto(newPhoto);
+  }
+
+  if (photo){
+    let predictImage = () => {
+      let name = imageClassifier(photo);
+      setPrediction(name);
+      setPhoto(undefined);      
+    }
+
+    return(
+      <SafeAreaView style={styles.container}>
+        <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }}/>
+        <TouchableOpacity onPress={predictImage}>
+        </TouchableOpacity>
+        <Text>{imagePrediction}</Text>
+      </SafeAreaView>
+    );
   }
 
   return (
@@ -45,11 +73,8 @@ export default function CameraAccess() {
           {/* this touchable opacity takes the picture */}
           <TouchableOpacity
             style={styles.picButton}
-            onPress={() => {
-              setCameraReady(cameraReady = true);
-            }}
+            onPress={takePic}
           >
-
           </TouchableOpacity>
         </View>
       </Camera>
@@ -87,5 +112,9 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginBottom: 60,
+  },
+  preview: {
+    flex: 1,
+    alignself: 'stretch'
   },
 });
